@@ -12,20 +12,14 @@ const Tile = ({ value, onClick, className, imageUrl }) => {
         alignItems: 'center',
         backgroundImage: imageUrl ? `url(${imageUrl})` : 'none',
         backgroundSize: 'cover',
+        opacity: value === 0 ? 0.4  : 1,
         backgroundPosition: 'center',
         cursor: 'pointer',
       }}
       onClick={onClick}
     >
       {value === 0 ? null : (
-        <div
-          style={{
-            color: 'white',
-            fontSize: '24px',
-            fontWeight: 'bold',
-            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
-          }}
-        >
+        <div className="tile-value">
           {value}
         </div>
       )}

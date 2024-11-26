@@ -31,6 +31,7 @@ export const Controls = ({
         <button
           onClick={onSkip}
           className="control-button skip-button"
+          disabled={!isPlaying} // Onemogućite dugme ako nije u režimu reprodukcije
         >
           <FastForward size={20} />
           Skip to Solution

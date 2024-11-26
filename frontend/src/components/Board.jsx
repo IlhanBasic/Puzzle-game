@@ -1,3 +1,4 @@
+import React from "react";
 import Tile from "./Tile";
 import { getValidMoves } from "../utils/puzzleUtils";
 import img1 from "../assets/1.png";
@@ -29,13 +30,10 @@ export const Board = ({ state, size, onMove }) => {
     <div
       className="board"
       style={{
-        display: "grid",
         gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))`,
         width: `${size * 80}px`,
         height: `${size * 80}px`,
-        position: "relative",
-        overflow: "hidden",
-        backgroundImage: `url(${fullPhoto})`,
+        // backgroundImage: `url(${fullPhoto})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -48,7 +46,7 @@ export const Board = ({ state, size, onMove }) => {
             index={index}
             value={value}
             onClick={() => validMoves.includes(index) && onMove(index)}
-            className="tile"
+            className={`tile ${value === 0 ? "tile-empty" : "tile-filled"}`}
             imageUrl={imageUrl}
           />
         );
