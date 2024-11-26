@@ -1,1 +1,1 @@
-export const API_KEY = "http://localhost:8000/api/";
+export const API_KEY = "https://puzzle-backend-aij3.onrender.com/api/";

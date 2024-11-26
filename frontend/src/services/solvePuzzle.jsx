@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000/api';
+const API_URL = 'https://puzzle-backend-aij3.onrender.com/api';
 
 const solvePuzzle = async (initialState, algorithm, heuristic) => {
   try {
