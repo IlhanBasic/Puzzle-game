@@ -71,7 +71,7 @@ body {
 .board {
   display: grid;
   background-color: #f7fafc;
-  padding: 1rem;
+  /* padding: 1rem; */
   border-radius: 0.75rem;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }

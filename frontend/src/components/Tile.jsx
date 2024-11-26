@@ -1,36 +1,36 @@
-const Tile = ({ value,index, size, onClick, className, imageUrl }) => {
-  const tileClasses = `tile ${className || ""}`;
-  const tileSize = 80;
+import React from "react";
 
-  const row = Math.floor(value / size);
-  const col = value % size;
-
-  const tileStyle = {
-    backgroundImage: `url(${imageUrl})`,
-    backgroundSize: `${size * tileSize}px ${size * tileSize}px`,
-    backgroundPosition: `-${col * tileSize}px -${row * tileSize}px`,
-    width: `${tileSize}px`,
-    height: `${tileSize}px`,
-  };
-
-  if (value === 0) {
-    return (
-      <div
-        className={`${tileClasses} tile-empty`}
-        onClick={onClick}
-        style={{ ...tileStyle, opacity: 0.2 }}
-      />
-    );
-  }
-
+const Tile = ({ value, onClick, className, imageUrl }) => {
   return (
     <div
-      className={`${tileClasses} tile-filled`}
+      className={className}
+      style={{
+        width: '80px',
+        height: '80px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundImage: imageUrl ? `url(${imageUrl})` : 'none',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        cursor: 'pointer',
+      }}
       onClick={onClick}
-      style={tileStyle}
     >
-      <span className="tile-value">{value}</span>
+      {value === 0 ? null : (
+        <div
+          style={{
+            color: 'white',
+            fontSize: '24px',
+            fontWeight: 'bold',
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
+          }}
+        >
+          {value}
+        </div>
+      )}
     </div>
   );
 };
+
 export default Tile;
