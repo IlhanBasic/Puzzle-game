@@ -16,8 +16,6 @@ const GamePage = () => {
       navigate('/login');
     }
   }, [navigate]);
-
-  // Watch for cookie changes, and redirect to login if token is deleted
   useEffect(() => {
     const handleCookieChange = () => {
       const token = localStorage.getItem('token') || Cookies.get('access_token');
@@ -26,10 +24,9 @@ const GamePage = () => {
       }
     };
 
-    // Listen for changes in the cookies
-    const intervalId = setInterval(handleCookieChange, 1000); // Check every second
+    const intervalId = setInterval(handleCookieChange, 1000); 
 
-    return () => clearInterval(intervalId); // Clean up interval on component unmount
+    return () => clearInterval(intervalId); 
   }, [navigate]);
 
   const [config, setConfig] = useState({
@@ -90,19 +87,14 @@ const GamePage = () => {
   };
 
   const applyAllMoves = () => {
-    if (moves.length > 0) {
-      let finalState = state;
-      for (let i = 0; i < moves.length; i++) {
-        finalState = makeMove(finalState, moves[i]);
-      }
-
-      setState(finalState);
-      setCurrentMoveIndex(moves.length);
-      setIsPlaying(false);
-    }
+    const solvedState = Array.from({ length: config.size * config.size }, (_, i) => i + 1); // Kreiraj niz od 1 do 8
+    solvedState[solvedState.length - 1] = 0; 
+  
+    setState(solvedState);
+    setCurrentMoveIndex(moves.length); 
+    setIsPlaying(false); 
   };
-
-  // Key press event listener
+  
   useEffect(() => {
     const handleKeyPress = (e) => {
       e.preventDefault();
@@ -129,7 +121,6 @@ const GamePage = () => {
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [moves.length, resetGame]);
 
-  // Simulate moves during the game
   useEffect(() => {
     if (isPlaying && currentMoveIndex < moves.length) {
       const timer = setTimeout(() => {
